@@ -23,12 +23,12 @@ class AnnualGrossServiceTest {
 
     @Test
     void getDescription() {
-        assertThat(salaryCalculatorService.getDescription()).isEqualTo(ANNUAL_GROSS_DESCRIPTION);
+        assertThat(this.salaryCalculatorService.getDescription()).isEqualTo(ANNUAL_GROSS_DESCRIPTION);
     }
 
     @ParameterizedTest
     @CsvSource({"6000, 72000.00", "7000, 84000.00", "15143.99,181727.88"})
-    public void getDisabilityZus(BigDecimal input, BigDecimal expected) {
-        assertThat(salaryCalculatorService.apply(input)).isEqualTo(expected);
+    public void getAnnualGross(BigDecimal input, BigDecimal expected) {
+        assertThat(this.salaryCalculatorService.apply(input)).isEqualTo(expected);
     }
 }

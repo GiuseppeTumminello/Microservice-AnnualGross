@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.acoustic.entity.AnnualGross;
 
 @Repository
-public interface AnnualGrossRepository extends JpaRepository<AnnualGross, Long> {
+public interface AnnualGrossRepository extends JpaRepository<AnnualGross, Integer> {
 
 
 

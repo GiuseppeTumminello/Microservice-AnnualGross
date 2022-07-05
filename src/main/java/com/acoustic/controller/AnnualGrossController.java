@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -23,14 +22,16 @@ import java.util.Map;
 @Validated
 public class AnnualGrossController {
 
+    public static final String DESCRIPTION = "description";
+    public static final String VALUE = "value";
     private final AnnualGrossRepository annualGrossRepository;
     private final SalaryCalculatorService salaryCalculatorService;
 
 
     @PostMapping("/getAnnualGross/{grossMonthlySalary}")
-    public Map<String, BigDecimal> calculateTotalZus(@PathVariable @Min(2000)BigDecimal grossMonthlySalary){
-        var totalZus = salaryCalculatorService.apply(grossMonthlySalary);
-        this.annualGrossRepository.save(AnnualGross.builder().annualGrossAmount(totalZus).build());
-        return new LinkedHashMap<>(Map.of(salaryCalculatorService.getDescription(), totalZus));
+    public Map<String, String> calculateAnnualGross(@PathVariable @Min(2000)BigDecimal grossMonthlySalary){
+        var annualGross = this.salaryCalculatorService.apply(grossMonthlySalary);
+        this.annualGrossRepository.save(AnnualGross.builder().annualGrossAmount(annualGross).build());
+        return  Map.of(DESCRIPTION,this.salaryCalculatorService.getDescription(), VALUE, String.valueOf(annualGross));
     }
 }
