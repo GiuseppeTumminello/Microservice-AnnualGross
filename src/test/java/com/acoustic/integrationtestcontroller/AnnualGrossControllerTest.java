@@ -27,7 +27,7 @@ class AnnualGrossControllerTest {
     public static final String ANNUAL_GROSS_DESCRIPTION = "Annual gross";
     public static final String DESCRIPTION = "description";
     public static final String VALUE = "value";
-    private final String ANNUAL_GROSS_ENDPOINT = "/annualGross/getAnnualGross/";
+    private final String ANNUAL_GROSS_ENDPOINT = "/annual-gross/calculation/";
     @Autowired
     private MockMvc mockMvc;
     @Autowired

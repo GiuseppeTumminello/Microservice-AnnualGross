@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/annualGross")
+@RequestMapping("/annual-gross")
 @RequiredArgsConstructor
 @Validated
 @CrossOrigin
@@ -26,7 +26,7 @@ public class AnnualGrossController {
     private final SalaryCalculatorService salaryCalculatorService;
 
 
-    @PostMapping("/getAnnualGross/{grossMonthlySalary}")
+    @PostMapping("/calculation/{grossMonthlySalary}")
     public Map<String, String> calculateAnnualGross(@PathVariable @Min(2000)BigDecimal grossMonthlySalary){
         var annualGross = this.salaryCalculatorService.apply(grossMonthlySalary);
         this.annualGrossRepository.save(AnnualGross.builder().annualGrossAmount(annualGross).build());
